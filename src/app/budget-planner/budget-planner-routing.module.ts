@@ -5,6 +5,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
 import { ExpenseComponent } from './expense/expense.component';
+import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'expense', component: ExpenseComponent
+  },
+  {
+    path: 'todo', component: TodoComponent
   }
 ];
 

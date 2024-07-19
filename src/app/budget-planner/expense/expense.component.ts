@@ -34,16 +34,13 @@ export class ExpenseComponent {
      this.monthSelected = this.selectedMonth !== 'Select Month'
   }
   getFilteredExpenses(month: string){
-    return this.filteredExpenses = monthlyExpenses[month]|| []
+    return monthlyExpenses[month]|| []
   }
   onSubmitExpense() {
     if(this.expenseForm.valid) {
       const newExpense = this.expenseForm.value;
-      this.filteredExpenses.push(newExpense);
+      monthlyExpenses[this.selectedMonth].push(newExpense);
       this.expenseForm.reset();
-    }
-    else {
-
     }
   }
   calculateTotalExpense(month: string): number {
