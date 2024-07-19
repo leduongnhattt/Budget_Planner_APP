@@ -9,8 +9,7 @@
       <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()" class="input-form">
           <div class="form-group">
               <select formControlName="month" id="month" class="form-select" (change)="onChange($event)">
-                  <option value="" disabled>Select Month</option>
-                  <option value="">Select Month</option>
+                  <option value="0" disabled>Select Month</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -28,8 +27,13 @@
           <div class="form-group">
           </div>
           <div class="total-income">
-              Total Income for {{ selectedMonth }}: ${{ calculateTotalIncome(selectedMonth) }}
-          </div>
+            <ng-container *ngIf="monthSelected; else defaultTotal">
+                Total Income for {{ selectedMonth }}: ${{ calculateTotalIncome(selectedMonth) }}
+            </ng-container>
+            <ng-template #defaultTotal>
+                Total Income for month: $0
+            </ng-template>
+        </div>
           <div class="form-group">
               <label for="investments">Investments:</label>
               <select formControlName="investments" id="investments" class="form-select"
@@ -50,7 +54,7 @@
                   <option value="Rental Income">Rental Income</option>
               </select>
           </div>
-          <div class="form-group">
+          <div class="form-group" >
               <label for="amount">Amount:</label>
               <input type="number" formControlName="amount" id="amount" class="form-control"
                   placeholder="Enter amount" [class.disabled-dropdown]="!monthSelected">
@@ -59,12 +63,19 @@
           </div>
           <div class="form-group">
           </div>
-          <button type="submit" class="btn btn-primary" (click)="onSubmit()"
+          <button  type="submit" class="btn btn-primary" (click)="onSubmit()"
           [class.disabled-dropdown]="!monthSelected">Add</button>
       </form>
       <hr>
-      <h3>Income List - {{ selectedMonth }}</h3>
-      <table class="table">
+      <ng-container *ngIf="monthSelected; else defaultMonth">
+        <h3>Income List - {{ selectedMonth }}</h3>
+    </ng-container>
+    <ng-template #defaultMonth>
+       <h3>Income List - Month</h3>
+    </ng-template>
+
+
+      <table class="table"  *ngIf="monthSelected">
           <thead>
               <tr>
                   <th>Source of Income</th>

@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
+import { ExpenseComponent } from './expense/expense.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   {
     path: 'income', component: IncomeComponent
   },
+  {
+    path: 'expense', component: ExpenseComponent
+  }
 ];
 
 @NgModule({

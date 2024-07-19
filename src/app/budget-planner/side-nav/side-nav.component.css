@@ -70,4 +70,6 @@ text-align: center;
 justify-content: center;
 background-color: #87dcdc;
 margin-bottom: 20px;
+padding: 5px 10px;
+border-radius: 10px;
 }

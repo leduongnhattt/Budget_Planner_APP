@@ -31,13 +31,11 @@ export class IncomeComponent {
       investments: ['', Validators.required],
       amount: ['', Validators.required]
     });
-
   }
 
   onChange(event: any): void {
     this.selectedMonth = event.target.value;
-    this.monthSelected = true;
-    this.getFilteredIncomes(this.selectedMonth);
+    this.monthSelected = this.selectedMonth !== 'Select Month'
   }
 
   getFilteredIncomes(month: string): Income[] {
@@ -63,6 +61,7 @@ export class IncomeComponent {
       // Reset the form and clear values
       this.incomeForm.reset();
       this.incomeForm.patchValue({ month: '', source: '', amount: '', investments: '' });
+      
     }
   }
 
