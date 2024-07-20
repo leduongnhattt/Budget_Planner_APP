@@ -1,0 +1,63 @@
+<app-side-nav></app-side-nav>
+<div class="main-container">
+    <div class="container">
+        <h2>Transaction History</h2>
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmitTransaction()" class="input-form">
+            <div class="form-group">
+                <select formControlName="month" id="month" class="form-select" (change)="onChangeTransaction($event)">
+                    <option value="" disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+            <div class="form-group">
+            </div>
+            <div class="total-todoTrans">
+              <ng-container *ngIf="monthSelected; else defaultTotal">
+                Transactions for {{ selectedMonth }}: ${{ calculateTotalTransaction(selectedMonth) }}
+              </ng-container>
+              <ng-template #defaultTotal>
+                  Transaction for Month: $0
+              </ng-template>
+            </div>
+        </form>
+        <hr>
+        <ng-container *ngIf="monthSelected; else defaultMonth">
+          <h3>Transaction History List - {{ selectedMonth }}</h3>
+        </ng-container>
+        <ng-template #defaultMonth>
+          <h3>Transaction History List - Month</h3>
+        </ng-template>
+        <table class="table" *ngIf="monthSelected">
+            <thead>
+                <tr>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let todoTrans of getFilteredTransaction(this.selectedMonth)">
+                    <td>{{ todoTrans.transactionType }}</td>
+                    <td>{{ todoTrans.transactionAmount }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="input-form">
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+            </div>
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,6 @@ export class SideNavComponent {
     this.router.navigate(['/budget-planner/history'])
   }
   onLogOut() {
-    this.router.navigate(['/budget-planner/logout'])
+    this.router.navigate(['/budget-planner/login'])
   }
 }
